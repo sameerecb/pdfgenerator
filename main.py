@@ -13,6 +13,9 @@ for index, row in df.iterrows():
              ln=1)  # Height and Text size keep same or near to each other
     pdf.line(10, 21, 200, 21)
 
+    for i in range(row["Pages"] - 1):
+        pdf.add_page()
+
 pdf.output("output.pdf")
 
 # Below code is for creating page manually
