@@ -12,9 +12,11 @@ for index, row in df.iterrows():
     pdf.set_font(family="Times", style="B", size=24)
     pdf.set_text_color(100, 100, 100)
     pdf.cell(w=0, h=12, txt=row["Topic"], align="L", ln=1)  # Height and Text size keep same or near to each other
-    pdf.line(10, 21, 200, 21)
+    for y in range(20, 298, 10):
+        pdf.line(20, y, 200, y)
+    # pdf.line(10, 21, 200, 21) if we are creating only one line
 
-    # Set the footer
+    # Set the footer on first page
     pdf.ln(265)
     pdf.set_font(family="Times", style="I", size=8)
     pdf.set_text_color(180, 180, 180)
@@ -23,11 +25,13 @@ for index, row in df.iterrows():
     for i in range(row["Pages"] - 1):
         pdf.add_page()
 
-        # Set the footer
+        # Set the footer on another pages
         pdf.ln(275)
         pdf.set_font(family="Times", style="I", size=8)
         pdf.set_text_color(180, 180, 180)
         pdf.cell(w=0, h=12, txt=row["Topic"], align="R", ln=1)
+        for y in range(20, 298, 10):
+            pdf.line(20, y, 200, y)
 
 pdf.output("output.pdf")
 
